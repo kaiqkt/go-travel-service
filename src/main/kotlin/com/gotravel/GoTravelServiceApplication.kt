@@ -7,5 +7,6 @@ import org.springframework.boot.runApplication
 class GoTravelServiceApplication
 
 fun main(args: Array<String>) {
+	print("1233")
 	runApplication<GoTravelServiceApplication>(*args)
 }
