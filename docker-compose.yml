@@ -11,11 +11,11 @@ services:
     volumes:
       - ./nginx/conf.d:/etc/nginx/conf.d
   docker-app-1:
-    build: .
+    image: go-travel:latest
     depends_on:
       - mongodb
   docker-app-2:
-    build: .
+    image: go-travel:latest
     depends_on:
       - mongodb
   mongodb:
