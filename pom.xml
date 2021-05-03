@@ -10,7 +10,7 @@
     </parent>
     <groupId>com.go-travel</groupId>
     <artifactId>go-travel-service</artifactId>
-    <version>0.0.1-SNAPSHOT</version>
+    <version>5.0.0</version>
     <name>go-travel-service</name>
     <description>Demo project for Spring Boot</description>
 
