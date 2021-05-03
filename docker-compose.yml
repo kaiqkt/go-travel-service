@@ -3,22 +3,25 @@ volumes:
   data:
 services:
   nginx:
-    container_name: some-nginx
+    container_name: nginx
     image: nginx:latest
     restart: always
     ports:
       - 80:80
     volumes:
-      - ./nginx/conf.d:/etc/nginx/conf.d
+      - /e/go-travel-service/nginx/conf.d:/etc/nginx/conf.d
   docker-app-1:
-    image: go-travel:latest
+    container_name: service-1
+    image: onlyzedsafasdfa/go-travel
     depends_on:
       - mongodb
   docker-app-2:
-    image: go-travel:latest
+    container_name: service-2
+    image: onlyzedsafasdfa/go-travel
     depends_on:
       - mongodb
   mongodb:
+    container_name: mongo
     image: mongo:latest
     ports:
       - 27017:27017
