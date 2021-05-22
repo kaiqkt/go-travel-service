@@ -37,10 +37,17 @@ class SecurityConfig : WebSecurityConfigurerAdapter() {
     override fun configure(http: HttpSecurity) {
         http.cors().and().csrf().disable()
         http.authorizeRequests()
-            .antMatchers("/v2/api-docs", "/swagger-resources/configuration/ui", "/swagger-resources", "/swagger-resources/configuration/security", "/swagger-ui.html", "/webjars/**").permitAll()
-                .antMatchers(HttpMethod.POST, *POST_MATCHERS).permitAll()
-                .antMatchers(HttpMethod.GET, *GET_MATCHERS).permitAll()
-                .anyRequest().authenticated()
+            .antMatchers(
+                "/v2/api-docs",
+                "/swagger-resources/configuration/ui",
+                "/swagger-resources",
+                "/swagger-resources/configuration/security",
+                "/swagger-ui.html",
+                "/webjars/**"
+            ).permitAll()
+            .antMatchers(HttpMethod.POST, *POST_MATCHERS).permitAll()
+            .antMatchers(HttpMethod.GET, *GET_MATCHERS).permitAll()
+            .anyRequest().authenticated()
         http.addFilter(JWTAuthenticationFilter(jwtUtil, authenticationManager(), userRepository))
         http.addFilter(JWTAuthorizationFilter(authenticationManager(), jwtUtil, userDetailsService!!))
         http.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)
@@ -67,12 +74,13 @@ class SecurityConfig : WebSecurityConfigurerAdapter() {
 
     companion object {
         private val POST_MATCHERS = arrayOf(
-                "/user",
-                "/reset/**"
+            "/user",
+            "/reset/**"
         )
 
         private val GET_MATCHERS = arrayOf(
-                "/reset/token/**"
+            "/reset/token/**",
+            "/healthcheck"
         )
     }
 }
